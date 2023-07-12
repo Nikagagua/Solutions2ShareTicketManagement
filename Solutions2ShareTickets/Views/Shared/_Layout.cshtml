@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Solutions2ShareTickets</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Solutions2ShareTickets.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <span class="fs-4 text-dark">Solutions2Share Tickets</span>
+    </a>
+
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="GetAccessToken" asp-action="Index">Get Access Token</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
+        </li>
+    </ul>
+    </header>
+
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-body-secondary"> &copy;@DateTime.Now.Year Created by Nika Gagua</p>
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img src="~/images/s2s-favicon.png" class="small-image" alt="S2S favicon">
+            </a>
+            <ul class="nav col-md-4 justify-content-end">
+            <li class="nav-item"><a href="/Home" class="nav-link px-2 text-body-secondary">Home</a></li>
+            <li class="nav-item"><a href="/Home/Privacy" class="nav-link px-2 text-body-secondary">Privacy</a></li>
+            <li class="nav-item"><a href="/Home/About" class="nav-link px-2 text-body-secondary">About</a></li>
+            </ul>
+        </footer>
+    </div>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

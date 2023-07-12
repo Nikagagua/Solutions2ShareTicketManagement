@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Index";
+}
+
+<form id="accessTokenForm">
+    <label for="clientId">Client ID:</label>
+    <input type="text" id="clientId" name="clientId">
+
+    <label for="clientSecret">Client Secret:</label>
+    <input type="text" id="clientSecret" name="clientSecret">
+
+    <label for="scope">Scope:</label>
+    <input type="text" id="scope" name="scope">
+
+    <button type="submit">Generate Access Token</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+    $(function () {
+        $('#accessTokenForm').submit(function (event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: '/ZohoDesk/GenerateAccessToken', // Replace with your actual endpoint URL
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function (response) {
+                    if (response.accessToken) {
+                        // Access token generated successfully
+                        $('#result').text('Access token: ' + response.accessToken);
+                    } else if (response.error) {
+                        // Error occurred during access token generation
+                        $('#result').text('Error: ' + response.error);
+                    }
+                },
+                error: function (error) {
+                    console.error('Failed to generate access token:', error);
+                }
+            });
+        });
+    });
+</script>

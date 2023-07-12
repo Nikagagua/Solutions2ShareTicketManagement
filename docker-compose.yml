@@ -1,0 +1,33 @@
+version: '3.4'
+
+networks:
+  S2STicketsApp:
+
+services:
+  S2SAppDb:
+    container_name: S2S-App-Db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8080:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Str0ngPa$$w0rd
+    networks:
+      - S2STicketsApp
+  solutions2sharetickets:
+    container_name: Solutions2ShareTicketsApp
+    image: ${DOCKER_REGISTRY-}solutions2sharetickets
+    build:
+      context: .
+      dockerfile: Solutions2ShareTickets/Dockerfile
+    ports:
+      - 8000:80
+    depends_on:
+      - S2SAppDb
+    environment:
+      - DB_Host=S2SAppDb
+      - DB_User=sa
+      - DB_Password=Str0ngPa$$w0rd
+      - DB_Name=S2STicketsApp
+    networks:
+      - S2STicketsApp
